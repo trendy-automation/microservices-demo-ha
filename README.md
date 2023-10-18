@@ -3,10 +3,28 @@
 Fork from https://github.com/microservices-demo/microservices-demo
 HA release
 
+1.
 https://github.com/argoproj/argo-cd/blob/master/manifests/ha/namespace-install.yaml
 
+2.
+git clone https://github.com/devopsbucket/argocd
+
+cd argocd/HA
+
+# Perform a dry run before the actual deployment to observe the changes.
+kustomize build overlays/dev
+
+#Create Namespace Called- argcod
+kubectl create ns argocd
+
+#Actual deployment
+kubectl apply -k overlays/dev
+
+
+3.
 helm repo add argo https://argoproj.github.io/argo-helm
 
+4.
 Pre-requisites
 Please complete the steps before proceeding with installation argocd  in High Availability mode.
 
