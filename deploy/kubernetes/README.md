@@ -1,6 +1,5 @@
-# Installing sock-shop on Kubernetes
-
-See the [documentation](https://microservices-demo.github.io/deployment/kubernetes-minikube.html) on how to deploy Sock Shop using Minikube.
+## Installation ingress-nginx
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
 
 ## Kubernetes manifests
 
