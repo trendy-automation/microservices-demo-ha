@@ -6,7 +6,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 There are 2 sets of manifests for deploying Sock Shop on Kubernetes: one in the [manifests directory](manifests/), and complete-demo.yaml. The complete-demo.yaml is a single file manifest
 made by concatenating all the manifests from the manifests directory, so please regenerate it when changing files in the manifests directory.
 
-kubectl apply -f https://github.com/trendy-automation/microservices-demo-ha/blob/master/deploy/kubernetes/complete-demo.yaml
+kubectl apply -f https://raw.githubusercontent.com/trendy-automation/microservices-demo-ha/master/deploy/kubernetes/complete-demo.yaml
 
 ## Monitoring
 
