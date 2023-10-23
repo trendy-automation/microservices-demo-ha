@@ -872,6 +872,7 @@ spec:
             medium: Memory
       nodeSelector:
         kubernetes.io/os: linux
+        
 ---
 apiVersion: v1
 kind: Service
@@ -887,21 +888,43 @@ spec:
     targetPort: 27017
   selector:
     name: user-db
+    
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: v1
+kind: Service
 metadata:
-  name: ingress-wildcard-host
+  name: front-end
+  annotations:
+    metallb.universe.tf/address-pool: nat
+    metallb.universe.tf/ip-allocated-from-pool: nat
+    prometheus.io/scrape: 'true'
+  labels:
+    name: front-end
   namespace: sock-shop
 spec:
-  rules:
-  - host: "microservices-demo-ha.com"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: front-end
-            port:
-              number: 80
+  selector:
+    name: front-end
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 8079
+    nodePort: 30001
+  type: LoadBalancer
+
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: nat
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.31.139.248-10.31.139.253
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: empty
+  namespace: metallb-system
+
+
