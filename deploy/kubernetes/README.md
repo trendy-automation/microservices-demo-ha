@@ -13,6 +13,8 @@ made by concatenating all the manifests from the manifests directory, so please 
 
 kubectl apply -f https://raw.githubusercontent.com/trendy-automation/microservices-demo-ha/master/deploy/kubernetes/complete-demo.yaml
 
+kubectl config  set-context --current  --namespace='sock-shop'
+
 ## Monitoring
 
 All monitoring is performed by prometheus. All services expose a `/metrics` endpoint. All services have a Prometheus Histogram called `request_duration_seconds`, which is automatically appended to create the metrics `_count`, `_sum` and `_bucket`.
