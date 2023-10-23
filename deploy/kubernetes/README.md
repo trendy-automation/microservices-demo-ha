@@ -15,6 +15,14 @@ kubectl apply -f https://raw.githubusercontent.com/trendy-automation/microservic
 
 kubectl config  set-context --current  --namespace='sock-shop'
 
+## Install prometheus
+
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm search repo prometheus-community
+helm install prometheus-sock prometheus-community/kube-prometheus-stack
+helm install stable prometheus-community/kube-prometheus-stack
+
 ## Monitoring
 
 All monitoring is performed by prometheus. All services expose a `/metrics` endpoint. All services have a Prometheus Histogram called `request_duration_seconds`, which is automatically appended to create the metrics `_count`, `_sum` and `_bucket`.
