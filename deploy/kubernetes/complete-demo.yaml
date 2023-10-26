@@ -910,7 +910,40 @@ spec:
     targetPort: 8079
     nodePort: 30001
   type: NodePort
+---
+#apiVersion: networking.k8s.io/v1
+#kind: IngressClass
+#metadata:
+#  labels:
+#    app.kubernetes.io/component: controller
+#  name: nginx-ingress
+#  annotations:
+#    ingressclass.kubernetes.io/is-default-class: "true"
+#spec:
+#  controller: k8s.io/ingress-nginx
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-sock-shop
+  namespace: sock-shop
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  #-  host: "sworker1"
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: front-end
+            port:
+              number: 80
+  
 ---
 #apiVersion: metallb.io/v1beta1
 #kind: IPAddressPool
