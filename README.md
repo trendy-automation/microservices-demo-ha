@@ -4,7 +4,7 @@ Fork from https://github.com/microservices-demo/microservices-demo
 HA release
 
 1.
-wget https://github.com/argoproj/argo-cd/blob/master/manifests/ha/namespace-install.yaml
+wget https://github.com/argoproj/argo-cd/blob/master/manifests/namespace-install.yaml
 kubectl apply -f install.yaml
 
 2.
