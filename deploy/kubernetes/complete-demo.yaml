@@ -107,6 +107,13 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       volumes:
         - name: tmp-volume
           emptyDir:
@@ -230,6 +237,13 @@ spec:
         ports:
         - name: mysql
           containerPort: 3306
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -421,6 +435,13 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       volumes:
         - name: tmp-volume
           emptyDir:
@@ -602,11 +623,26 @@ spec:
               - SETUID
               - DAC_OVERRIDE
           readOnlyRootFilesystem: true
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
+
       - name: rabbitmq-exporter
         image: kbudde/rabbitmq-exporter
         ports:
         - containerPort: 9090
           name: exporter
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -667,6 +703,13 @@ spec:
               - SETGID
               - SETUID
           readOnlyRootFilesystem: true
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -866,6 +909,13 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
+        resources:
+          limits:
+            cpu: 300m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
       volumes:
         - name: tmp-volume
           emptyDir:
@@ -916,7 +966,7 @@ spec:
 #metadata:
 #  labels:
 #    app.kubernetes.io/component: controller
-#  name: nginx-ingress
+#  name: nginx
 #  annotations:
 #    ingressclass.kubernetes.io/is-default-class: "true"
 #spec:
