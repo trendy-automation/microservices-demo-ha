@@ -952,6 +952,7 @@ metadata:
     name: front-end
   namespace: sock-shop
 spec:
+  externalTrafficPolicy: Local
   selector:
     name: front-end
   ports:
@@ -960,18 +961,6 @@ spec:
     targetPort: 8079
     nodePort: 30001
   type: NodePort
----
-#apiVersion: networking.k8s.io/v1
-#kind: IngressClass
-#metadata:
-#  labels:
-#    app.kubernetes.io/component: controller
-#  name: nginx
-#  annotations:
-#    ingressclass.kubernetes.io/is-default-class: "true"
-#spec:
-#  controller: k8s.io/ingress-nginx
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
