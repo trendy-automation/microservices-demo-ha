@@ -1,0 +1,6 @@
+kubectl get pods -A | grep Error | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done
+kubectl get pods -A | grep ErrImagePull | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done
+kubectl get pods -A | grep ContainerStatusUnknown | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done
+kubectl get pods -A | grep ImagePullBackOff | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done
+kubectl get pods -A | grep Evicted | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done
+kubectl get pods -A | grep Completed | awk 'NR>1{print $1" "$2}'     | while read ns pod; do         kubectl delete pod $pod -n $ns ; done

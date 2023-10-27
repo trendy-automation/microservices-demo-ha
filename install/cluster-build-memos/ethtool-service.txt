@@ -1,0 +1,34 @@
+# yaml
+- path: /etc/systemd/system/fix-network-tunnel.service
+    owner: root:root
+    permissions: '0755'
+    content: |
+      [Unit]
+      Description=A service to fix trouble with tunnels on vmxnet3
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=yes
+      ExecStart=/bin/bash -c "ethtool -K eth0 tx-checksum-ip-generic off"
+
+      [Install]
+      WantedBy=multi-user.target
+
+#manual 
+nano /etc/systemd/system/fix-network-tunnel.service
+
+[Unit]
+Description=A service to fix trouble with tunnels on vmxnet3
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c "ethtool -K eth0 tx-checksum-ip-generic off"
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+systemctl start fix-network-tunnel.service
+systemctl enable fix-network-tunnel.service
+systemctl edit --full fix-network-tunnel.service

@@ -1,0 +1,23 @@
+mkdir -p /etc/containerd/certs.d/docker.io
+cat << EOF > /etc/containerd/certs.d/docker.io/hosts.toml
+server = "https://docker.io"
+
+[host."https://registry-1.docker.io"]
+  capabilities = ["pull", "resolve"]
+EOF
+
+
+
+
+  
+  # nano /etc/containerd/config.toml
+  # The registry host has to be a domain name or IP. Port number is also
+  # needed if the default HTTPS or HTTP port is not used.
+  # auth = echo -n 'username:password' | base64
+  [plugins."io.containerd.grpc.v1.cri".registry.configs."registry-1.docker.io".auth]
+    auth = "aWx5YWtvbGVzbmljOlBAc3N3MHJhc2Q="
+    #identitytoken = "dckr_pat_GTBKFT_RPJAcE7XGpTxGosfcSsk"
+
+# service containerd restart
+
+crictl  --runtime-endpoint /run/containerd/containerd.sock   pull --auth aWx5YWtvbGVzbmljOlBAc3N3MHJhc2Q= wbitt/network-multitool

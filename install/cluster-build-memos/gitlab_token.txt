@@ -1,0 +1,3 @@
+3UaxC2J4SkANreefHJCc
+
+docker login registry.jet.su

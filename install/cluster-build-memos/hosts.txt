@@ -1,0 +1,7 @@
+10.31.139.248 controlplane1
+10.31.139.249 controlplane2
+10.31.139.250 controlplane3
+10.31.139.251 haproxy1
+10.31.139.252 haproxy2
+10.31.139.253 sworker3
+10.31.139.109 sworker4

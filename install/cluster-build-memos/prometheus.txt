@@ -1,0 +1,9 @@
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm search repo prometheus-community
+helm install prometheus-sock prometheus-community/kube-prometheus-stack
+helm install stable prometheus-community/kube-prometheus-stack
+
+
+helm delete stable prometheus-community/kube-prometheus-stack
+helm delete prometheus-sock prometheus-community/kube-prometheus-stack

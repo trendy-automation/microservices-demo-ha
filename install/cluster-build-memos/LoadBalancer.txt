@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-end
+  annotations:
+    #metallb.universe.tf/loadBalancerIPs: 10.31.139.248
+    metallb.universe.tf/address-pool: nat
+    metallb.universe.tf/ip-allocated-from-pool: nat
+    prometheus.io/scrape: 'true'
+  labels:
+    name: front-end
+  namespace: sock-shop
+spec:
+  #ipFamilyPolicy: PreferDualStack
+  #loadBalancerIP: 10.31.139.251
+  selector:
+    name: front-end
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 8079
+    nodePort: 30001
+  type: LoadBalancer
+---

@@ -1,0 +1,26 @@
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml 
+kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io metallb-webhook-config 
+kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io metallb-webhook-configuration
+
+или 
+
+helm repo add metallb https://metallb.github.io/metallb
+#helm install metallb metallb/metallb
+helm install metallb metallb/metallb -f values.yaml
+
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: nat
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.31.139.248-10.31.139.253
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: empty
+  namespace: metallb-system
+

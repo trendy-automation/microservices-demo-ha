@@ -1,0 +1,49 @@
+hostnamectl set-hostname sworker4
+chmod -R 777 /etc/netplan
+
+netplan apply
+poweroff
+
+kubeadm init --control-plane-endpoint=10.31.139.125:8443
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+kubeadm init phase upload-certs --upload-certs
+
+kubeadm join 10.31.139.125:8443 --token iiaryb.gt8w0vzm12orvvgp \
+        --discovery-token-ca-cert-hash sha256:f56d5adea98d73adaf30cd293c2eecf5eb220c81aeeb3e4b2edc9a9d8c92e196 \
+        --control-plane \
+ --certificate-key 645593ea51e8139e1419e08359e98b69919a650db5f42089775dbff01c78a8e0
+
+kubeadm join 10.31.139.125:8443 --token iiaryb.gt8w0vzm12orvvgp \
+        --discovery-token-ca-cert-hash sha256:f56d5adea98d73adaf30cd293c2eecf5eb220c81aeeb3e4b2edc9a9d8c92e196 \
+ --certificate-key 645593ea51e8139e1419e08359e98b69919a650db5f42089775dbff01c78a8e0
+
+
+
+
+
+#controlplane1
+kubeadm token create --print-join-command
+
+
+other controlplanes
+kubeadm join controlplane1:6443 --token v8fnmr.wftfxwvhya9n2u47 \
+        --discovery-token-ca-cert-hash sha256:34ce7e4a60463766964c7b3c0882485f339a492bb9f43d8be7abc4b97a711ece \
+        --control-plane \
+ --certificate-key 645593ea51e8139e1419e08359e98b69919a650db5f42089775dbff01c78a8e0
+
+kubeadm join controlplane1:6443 --token y7ekh3.zg9zc7oahtr9f474 --discovery-token-ca-cert-hash sha256:066ed3cb882b52ec8fdd6aae549a971d6a0ceae58bca5dec4d71f7c2553162e3
+
+
+kubeadm upgrade plan 1.11.1 --feature-gates CoreDNS=true
+kubeadm upgrade apply 1.11.1 --feature-gates CoreDNS=true 
+
+
+#helm repo add coredns https://coredns.github.io/helm
+#helm --namespace=kube-system install coredns coredns/coredns
+
+
+sudo systemctl --all list-unit-files --type=service
+
+kubectl config set-context --current=true --namespace='sock-shop'

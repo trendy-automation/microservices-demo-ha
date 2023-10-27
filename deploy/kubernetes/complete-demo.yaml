@@ -945,8 +945,8 @@ kind: Service
 metadata:
   name: front-end
   annotations:
-    metallb.universe.tf/address-pool: nat
-    metallb.universe.tf/ip-allocated-from-pool: nat
+    #metallb.universe.tf/address-pool: nat
+    #metallb.universe.tf/ip-allocated-from-pool: nat
     prometheus.io/scrape: 'true'
   labels:
     name: front-end
@@ -956,11 +956,9 @@ spec:
   selector:
     name: front-end
   ports:
-  - protocol: "TCP"
-    port: 80
+  #- protocol: "TCP"
+  - port: 80
     targetPort: 8079
-    nodePort: 30001
-  type: NodePort
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -972,7 +970,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  #-  host: "sworker1"
   - http:
       paths:
       - pathType: Prefix
