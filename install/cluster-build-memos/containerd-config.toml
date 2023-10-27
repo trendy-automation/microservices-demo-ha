@@ -15,9 +15,8 @@ EOF
   # needed if the default HTTPS or HTTP port is not used.
   # auth = echo -n 'username:password' | base64
   [plugins."io.containerd.grpc.v1.cri".registry.configs."registry-1.docker.io".auth]
-    auth = "aWx5YWtvbGVzbmljOlBAc3N3MHJhc2Q="
-    #identitytoken = "dckr_pat_GTBKFT_RPJAcE7XGpTxGosfcSsk"
+    auth = "***************************"
 
 # service containerd restart
 
-crictl  --runtime-endpoint /run/containerd/containerd.sock   pull --auth aWx5YWtvbGVzbmljOlBAc3N3MHJhc2Q= wbitt/network-multitool
+crictl  --runtime-endpoint /run/containerd/containerd.sock   pull --auth ************************** wbitt/network-multitool
