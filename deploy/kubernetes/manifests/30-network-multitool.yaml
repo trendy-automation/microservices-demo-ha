@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: network-multitool
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: network-multitool
+  labels:
+    tier: node
+    app: network-multitool
+  namespace: network-multitool
+spec:
+  selector:
+    matchLabels:
+      tier: node
+      app: network-multitool
+  template:
+    metadata:
+      labels:
+        tier: node
+        app: network-multitool
+    spec:
+      tolerations:
+      - operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: network-multitool
+        image: wbitt/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "1180"
+        - name: HTTPS_PORT
+          value: "11443"

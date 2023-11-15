@@ -1,7 +1,7 @@
 ## Installation ingress-nginx
 !# Deploy version
 !# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
-# DaemonSet version with ModePort 30080 / 30443
+# DaemonSet version with NodePort 30080 / 30443
 kubectl apply -f https://raw.githubusercontent.com/trendy-automation/microservices-demo-ha/master/deploy/kubernetes/ingress-nginx-daemonset.yaml
 
 ## Installation metallb
