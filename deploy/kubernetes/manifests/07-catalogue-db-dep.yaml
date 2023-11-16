@@ -27,10 +27,10 @@ spec:
         resources:
           limits:
             cpu: 400m
-            memory: 700Mi
+            memory: 4700Mi
           requests:
             cpu: 200m
-            memory: 300Mi        
+            memory: 3300Mi        
         ports:
         - name: mysql
           containerPort: 3306
