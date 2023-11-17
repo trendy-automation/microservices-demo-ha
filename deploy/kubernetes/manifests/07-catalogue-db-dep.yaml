@@ -26,10 +26,10 @@ spec:
             value: socksdb
         resources:
           limits:
-            cpu: 50m
+            cpu: 150m
             #memory: 7000Mi
           requests:
-            cpu: 50m
+            cpu: 150m
             #memory: 7000Mi        
         ports:
         - name: mysql
