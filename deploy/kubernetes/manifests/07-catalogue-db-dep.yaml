@@ -23,14 +23,7 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
           - name: MYSQL_DATABASE
-            value: socksdb
-        resources:
-          limits:
-            cpu: 50m
-            #memory: 7000Mi
-          requests:
-            cpu: 50m
-            #memory: 7000Mi        
+            value: socksdb 
         ports:
         - name: mysql
           containerPort: 3306
